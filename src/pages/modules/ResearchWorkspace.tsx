@@ -14,7 +14,7 @@ export default function ResearchWorkspace() {
 
   const getTags = (r: any): string[] => {
     if (Array.isArray(r.tags)) return r.tags;
-    if (typeof r.tags === 'string') return r.tags.split(',').map(t => t.trim()).filter(Boolean);
+    if (typeof r.tags === 'string') return r.tags.split(',').map((t: string) => t.trim()).filter(Boolean);
     return [];
   };
 
