@@ -42,9 +42,9 @@ export default function SearchEngine() {
   }, [query, filterType, searchMode]);
 
   return (
-    <div className="p-8 max-w-6xl mx-auto flex gap-8 relative z-10">
+    <div className="p-8 max-w-6xl mx-auto flex gap-8 relative z-10 items-start">
       {/* Filters Sidebar */}
-      <div className="w-64 flex-shrink-0 space-y-6">
+      <div className="w-64 flex-shrink-0 space-y-6 sticky top-8">
         <div className="glass-panel p-6 rounded-2xl">
           <h3 className="font-bold text-lg mb-4 text-[#000080] flex items-center gap-2">
             <Filter size={18} /> Semantic Filters

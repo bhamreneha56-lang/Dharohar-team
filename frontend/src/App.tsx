@@ -124,7 +124,7 @@ function Sidebar() {
 
   // Standard vertical sidebar
   return (
-    <div className={`w-72 ${highContrast ? 'bg-black border-r-4 border-yellow-400 text-white' : 'bg-white/40 backdrop-blur-md border-r border-white/20 text-slate-900'} min-h-screen p-6 flex flex-col gap-3 shadow-[10px_0_30px_rgb(0,0,0,0.15)] z-50 relative transition-colors`}>
+    <div className={`w-72 flex-shrink-0 ${highContrast ? 'bg-black border-r-4 border-yellow-400 text-white' : 'bg-white/40 backdrop-blur-md border-r border-white/20 text-slate-900'} h-screen p-6 flex flex-col gap-3 shadow-[10px_0_30px_rgb(0,0,0,0.15)] z-50 relative transition-colors`}>
       {/* Decorative gradient orb */}
       {!highContrast && <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-white/20 to-transparent pointer-events-none"></div>}
 
@@ -182,7 +182,7 @@ function App() {
   
   return (
     <Router>
-      <div className={`flex ${wheelchairMode ? 'flex-col' : ''} min-h-screen ${highContrast ? 'bg-black text-white contrast-150 saturate-200' : 'bg-indian-flag text-slate-900'} overflow-hidden transition-all duration-300`}>
+      <div className={`flex ${wheelchairMode ? 'flex-col' : ''} h-screen ${highContrast ? 'bg-black text-white contrast-150 saturate-200' : 'bg-indian-flag text-slate-900'} overflow-hidden transition-all duration-300`}>
         
         <Sidebar />
 
