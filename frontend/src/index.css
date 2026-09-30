@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* background-color: #ffffff; removed to allow gradient background */
+  color: #0f172a;
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+/* --- FULL PAGE INDIAN FLAG BACKGROUND (Static image) --- */
+.bg-indian-flag {
+  background-image: url('/flag-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* --- INTERACTIVE 3D SYSTEM --- */
+.perspective-container { 
+  perspective: 1000px; 
+}
+
+.preserve-3d { 
+  transform-style: preserve-3d; 
+}
+
+/* Base floating animation when mouse is NOT interacting */
+@keyframes smoothFloat {
+  0% { transform: rotateX(5deg) rotateY(-15deg) translateY(0px); }
+  50% { transform: rotateX(8deg) rotateY(-10deg) translateY(-20px); }
+  100% { transform: rotateX(5deg) rotateY(-15deg) translateY(0px); }
+}
+
+.idle-float {
+  animation: smoothFloat 8s ease-in-out infinite;
+}
+
+/* Parallax Z-axis depths */
+.translate-z-extreme { transform: translateZ(120px); }
+.translate-z-high { transform: translateZ(70px); }
+.translate-z-mid { transform: translateZ(40px); }
+.translate-z-deep { transform: translateZ(-60px); }
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+  }
+  
+  .premium-card {
+    @apply bg-white border border-gray-100 rounded-2xl p-6 shadow-[0_2px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-[#000080] to-[#1a1a99] text-white px-6 py-2.5 rounded-xl font-bold shadow-[0_4px_15px_rgb(0,0,128,0.2)] hover:shadow-[0_6px_20px_rgb(0,0,128,0.3)] hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:transform-none disabled:shadow-none;
+  }
+}
+
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Global override to ensure NO plain white/blank backgrounds block the flowing saffron/white/green gradient */
+  :not(button):not(input):not(select):not(textarea).bg-white, 
+  :not(button):not(input):not(select):not(textarea).bg-gray-50,
+  :not(button):not(input):not(select):not(textarea).bg-gray-100, 
+  :not(button):not(input):not(select):not(textarea).bg-slate-50, 
+  :not(button):not(input):not(select):not(textarea).bg-slate-100,
+  :not(button):not(input):not(select):not(textarea).bg-\[\#F9F6F0\],
+  :not(button):not(input):not(select):not(textarea).bg-\[\#f8fafc\],
+  :not(button):not(input):not(select):not(textarea).bg-\[\#fdfbf7\] {
+    background-color: rgba(255, 255, 255, 0.55) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+}
+
+
