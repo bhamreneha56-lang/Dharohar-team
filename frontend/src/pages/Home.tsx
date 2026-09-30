@@ -41,7 +41,7 @@ export default function Home() {
               
               {/* Text Overlay */}
               <div className="z-20 flex flex-col items-center justify-center mt-8">
-                <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-serif font-bold text-white tracking-wider drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] mb-4">
+                <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-serif font-bold tracking-[0.05em] mb-4 bg-gradient-to-r from-[#024c5b] via-[#14663e] to-[#725b31] bg-clip-text text-transparent">
                   DHAROHAR
                 </h1>
                 <p className="text-xl md:text-2xl text-blue-50 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] max-w-2xl mb-12 bg-black/30 px-6 py-3 rounded-full backdrop-blur-md border border-white/10">
