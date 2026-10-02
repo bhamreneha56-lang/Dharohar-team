@@ -82,6 +82,7 @@ export default function Home() {
           src="/ambedkar.png" 
           alt="Dr. B.R. Ambedkar Heritage" 
           className="w-full h-full object-cover object-center contrast-[1.08] saturate-[1.12] brightness-[1.03] scale-100 hover:scale-105 transition-transform duration-[3000ms] ease-out"
+          style={{ filter: 'url(#flag-wave)' }}
         />
 
         {/* Ambient Shimmer Light Overlay */}

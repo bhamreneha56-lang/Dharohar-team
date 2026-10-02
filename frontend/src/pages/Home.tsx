@@ -8,12 +8,13 @@ export default function Home() {
   const slidesCount = 2;
 
   useEffect(() => {
-    // Auto slide every 5 seconds
-    const timer = setInterval(() => {
+    // First slide stays for 10 seconds, second slide stays for 4 seconds
+    const duration = currentSlide === 0 ? 10000 : 4000;
+    const timer = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % slidesCount);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+    }, duration);
+    return () => clearTimeout(timer);
+  }, [currentSlide]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slidesCount);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slidesCount) % slidesCount);
@@ -28,24 +29,60 @@ export default function Home() {
         <div 
           className={`absolute inset-0 w-full h-full overflow-hidden flex flex-col items-center justify-center transition-opacity duration-1000 ease-in-out ${currentSlide === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
         >
+          {/* Background Flag (Animated) */}
           <img 
-            src="/flag-vibrant.png" 
+            src="/clean-flag-bg.jpg" 
             alt="Indian Flag Background" 
-            className="absolute inset-0 w-full h-full object-cover object-center scale-100"
-            onError={(e) => { e.currentTarget.src = '/flag.jpg'; }}
+            className="absolute inset-0 w-full h-full object-cover object-center scale-100 brightness-[0.85]"
+            style={{ filter: 'url(#flag-wave)' }}
+          />
+
+          {/* Ambedkar Statue (Not Animated, Tinted for Color) */}
+          <img 
+            src="/ambedkar-statue-clean.png" 
+            alt="Dr. B.R. Ambedkar" 
+            className="absolute right-[-10%] md:right-[-5%] bottom-0 h-[65%] md:h-[70%] w-auto object-contain object-bottom z-[5] pointer-events-none drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
           {/* Removed the dark bg-slate-900/60 and black gradient overlays so the flag is fully visible! */}
           
           <div className="relative z-10 flex flex-col items-center justify-center p-6 text-center w-full h-full pt-16">
+            
+            {/* Top Navbar (Mimicking Image 2) */}
+            <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white/40 backdrop-blur-md border-b border-white/30 shadow-sm pointer-events-auto">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded bg-gradient-to-br from-orange-500 via-white to-green-600 flex items-center justify-center text-xs font-black border border-white">
+                  D
+                </div>
+                <span className="font-bold text-[#000080] tracking-widest text-lg">DHAROHAR</span>
+              </div>
+              <div className="hidden md:flex items-center gap-8 text-sm font-bold text-gray-800">
+                <Link to="/" className="text-orange-600 hover:text-orange-700 transition-colors">Home</Link>
+                <Link to="/features" className="hover:text-orange-600 transition-colors">Features</Link>
+                <Link to="/modules" className="hover:text-orange-600 transition-colors">Modules</Link>
+                <Link to="/impact" className="hover:text-orange-600 transition-colors">Impact</Link>
+                <Link to="/partners" className="hover:text-orange-600 transition-colors">Partners</Link>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-sm font-bold text-gray-800 hidden sm:block">EN / HI</span>
+                <Link to="/search" className="bg-[#0b132b] text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-orange-600 transition-colors shadow-md">
+                  Access Portals
+                </Link>
+              </div>
+            </div>
+
             <div className="flex flex-col items-center justify-center h-full w-full relative">
               
               {/* Text Overlay */}
-              <div className="z-20 flex flex-col items-center justify-center mt-8">
-                <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-serif font-bold tracking-[0.05em] mb-4 bg-gradient-to-r from-[#024c5b] via-[#14663e] to-[#725b31] bg-clip-text text-transparent">
+              <div className="z-20 flex flex-col items-center justify-center -mt-12">
+                <h1 className="text-7xl md:text-[7rem] lg:text-[9rem] font-serif font-bold tracking-tight mb-2 bg-gradient-to-r from-[#024c5b] via-[#14663e] to-[#725b31] bg-clip-text text-transparent">
                   DHAROHAR
                 </h1>
-                <p className="text-xl md:text-2xl text-blue-50 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] max-w-2xl mb-12 bg-black/30 px-6 py-3 rounded-full backdrop-blur-md border border-white/10">
-                  "Constitutional morality is not a natural sentiment. It has to be cultivated."
+                <p className="mt-2 text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#f04a00] to-[#e60000] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] tracking-tighter">
+                  Preserving the Past, Inspiring the Future
+                </p>
+                <p className="text-lg md:text-xl text-gray-900 font-semibold max-w-6xl w-[90%] text-center mb-12 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] px-4">
+                  A centralized digital repository dedicated to preserving and exploring the life, works, and constitutional legacy of Dr. B.R. Ambedkar. Empowering citizens through interactive history, archival research, and storytelling.
                 </p>
               </div>
               
@@ -60,7 +97,7 @@ export default function Home() {
           <img 
             src="/ambedkar.png" 
             alt="Dr. B.R. Ambedkar Heritage" 
-            className="absolute inset-0 w-full h-full object-cover object-[70%_center] scale-100"
+            className="absolute inset-0 w-full h-full object-cover object-[70%_center] scale-100 contrast-[1.1] saturate-[1.15]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/50 to-transparent pointer-events-none"></div>
         </div>
