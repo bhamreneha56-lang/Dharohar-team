@@ -16,10 +16,24 @@ body {
 
 /* --- FULL PAGE INDIAN FLAG BACKGROUND (Static image) --- */
 .bg-indian-flag {
+  position: relative;
+  z-index: 0;
+}
+
+.bg-indian-flag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('/flag-bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  filter: url(#flag-wave);
+  transform: scale(1.05); /* Prevent borders from showing when displacement happens */
+  z-index: -1;
 }
 
 /* --- INTERACTIVE 3D SYSTEM --- */
